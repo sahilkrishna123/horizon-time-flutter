@@ -27,7 +27,9 @@ class _favoriteState extends State<favorite> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
+      body: 
+        SingleChildScrollView(
+          child: Column(
         children: [
           SizedBox(
             height: 100,
@@ -78,17 +80,7 @@ class _favoriteState extends State<favorite> {
                 }
             ),
           ),
-          ListTile(
-              leading: Icon(
-                Icons.logout,
-                color: Colors.deepOrange[800],
-              ),
-              title: InkWell(onTap: (){
-
-                // logout logic
-
-              },child: text(text: "log Out",color: Colors.deepOrange.shade800))
-          ),
+          
           SizedBox(
             height: 60,
           ),
@@ -96,7 +88,9 @@ class _favoriteState extends State<favorite> {
               child: text(text:  "Privacy Policy | Terms and Conditions",color: Colors.grey.shade600)
           )
         ],
-      )
+      ),
+        ),
+      
     );
   }
 }

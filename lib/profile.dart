@@ -3,10 +3,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:horizon_time/gnav.dart';
 import 'package:horizon_time/signIn.dart';
 
-var iconList1 = [Icons.female, Icons.email, Icons.phone_android, Icons.lock];
+var iconList1 = [Icons.male, Icons.email, Icons.phone_android, Icons.lock];
 var titleTextList = ["Gender", "Email", "Phone Number", "Password"];
 var subtitleTextList = [
-  "female",
+  "Male",
   "sahil123@gmail.com",
   "03137347110",
   "......"

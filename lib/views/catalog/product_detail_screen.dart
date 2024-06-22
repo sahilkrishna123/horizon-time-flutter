@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 import '../../models/product.dart';
 import '../../services/cart_service.dart';
 
-
 class ProductDetailScreen extends StatelessWidget {
   final Product product;
   final CartService cartService = CartService();
@@ -34,15 +33,6 @@ class ProductDetailScreen extends StatelessWidget {
                 print("Button pressed: Adding ${product.name}");
                 Provider.of<CartService>(context, listen: false)
                     .addItem(product);
-                ScaffoldMessenger.of(context)
-                    .showSnackBar(SnackBar(content: Text('Added to cart')));
-              },
-              child: Text('Add to Cart 2222'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                // print("Product is: ${product.name}");
-                cartService.addItem(product);
                 ScaffoldMessenger.of(context)
                     .showSnackBar(SnackBar(content: Text('Added to cart')));
               },

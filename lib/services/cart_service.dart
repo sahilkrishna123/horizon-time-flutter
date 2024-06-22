@@ -1,30 +1,48 @@
-import 'package:firebase_database/firebase_database.dart';
-import '../models/cart.dart';
+import 'package:flutter/foundation.dart';
+import '../models/cart_item.dart';
 import '../models/product.dart';
 
-class CartService {
-  Cart _cart = Cart();
-  final DatabaseReference _dbRef = FirebaseDatabase.instance.ref().child('orders');
+class CartService with ChangeNotifier {
+  List<CartItem> _items = [];
 
-  Cart get cart => _cart;
+  List<CartItem> get items => _items;
 
-  void addItemToCart(Product product) {
-    _cart.addItem(product);
+  void addItem(Product product) {
+//////////////////
+    print("Adding product: ${product.name}");
+
+    var index = _items.indexWhere((item) => item.productId == product.id);
+    if (index >= 0) {
+      _items[index].quantity += 1;
+    } else {
+      _items.add(CartItem(
+        productId: product.id,
+        name: product.name,
+        price: product.price,
+        quantity: 1,
+      ));
+    }
+    notifyListeners();
+///////////////
+    print("Cart items: $_items");
   }
 
-  void removeItemFromCart(Product product) {
-    _cart.removeItem(product);
+  void removeItem(String productId) {
+    _items.removeWhere((item) => item.productId == productId);
+    notifyListeners();
   }
 
-  Future<void> checkout() async {
-    await _dbRef.push().set({
-      'items': _cart.items.map((item) => {
-        'productId': item.product.id,
-        'quantity': item.quantity,
-      }).toList(),
-      'totalPrice': _cart.totalPrice,
-      'timestamp': DateTime.now().toIso8601String(),
-    });
-    _cart = Cart(); // Reset cart after checkout
+  void clearCart() {
+    _items.clear();
+    notifyListeners();
+  }
+
+  double get totalAmount {
+    return _items.fold(0.0, (sum, item) => sum + item.total);
   }
 }
+
+
+
+
+

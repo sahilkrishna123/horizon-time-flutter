@@ -4,9 +4,10 @@ import 'package:horizon_time/profile.dart';
 import 'package:horizon_time/search.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:horizon_time/views/catalog/catalog_page.dart';
+import 'package:horizon_time/views/catalog/catalog_screen.dart';
+import 'package:horizon_time/views/cart/cart_screen.dart';
 
-var tab = [home(), favorite(), search(), profile(), CatalogPage()];
+var tab = [home(), favorite(), search(), profile(), CatalogScreen(), CartScreen()];
 var varindex = 0;
 
 class gnav extends StatefulWidget {
@@ -40,7 +41,8 @@ class _gnavState extends State<gnav> {
               GButton(icon: Icons.favorite_border, text: "Favorite"),
               GButton(icon: Icons.search, text: "Search"),
               GButton(icon: Icons.account_circle_outlined, text: "Profile"),
-              GButton(icon: Icons.production_quantity_limits_outlined, text: "Shop")
+              GButton(icon: Icons.production_quantity_limits_outlined, text: "Shop"),
+              GButton(icon: Icons.shopping_cart_checkout_outlined, text: "Cart")
             ],
           ),
         ),

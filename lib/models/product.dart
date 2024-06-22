@@ -1,9 +1,13 @@
+// lib/models/product.dart
+import 'package:firebase_database/firebase_database.dart';
+
 class Product {
   final String id;
   final String name;
   final String description;
   final double price;
   final String imageUrl;
+  final int stock;
 
   Product({
     required this.id,
@@ -11,25 +15,25 @@ class Product {
     required this.description,
     required this.price,
     required this.imageUrl,
+    required this.stock,
   });
 
-  factory Product.fromMap(String key, Map<dynamic, dynamic> map) {
-    return Product(
-      id: key,
-      name: map['name'],
-      description: map['description'],
-      price: (map['price'] as num).toDouble(),
-      imageUrl: map['imageUrl'],
-    );
+  factory Product.fromSnapshot(DataSnapshot snapshot) {
+  // Check if snapshot.value is not null and cast it to Map<dynamic, dynamic>
+  Map<dynamic, dynamic>? data = snapshot.value as Map<dynamic, dynamic>?;
+
+  if (data == null) {
+    throw ArgumentError('Invalid snapshot data: ${snapshot.value}');
   }
 
-  Map<String, dynamic> toMap() {
-    return {
-      'id': id,
-      'name': name,
-      'description': description,
-      'price': price,
-      'imageUrl': imageUrl,
-    };
-  }
+  return Product(
+    id: snapshot.key!,
+    name: data['name'],
+    description: data['description'],
+    price: (data['price'] as num).toDouble(), // Ensure price is parsed as double
+    imageUrl: data['imageUrl'],
+    stock: data['stock'],
+  );
+}
+
 }

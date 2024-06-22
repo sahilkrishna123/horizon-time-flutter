@@ -144,7 +144,9 @@ class _signInState extends State<signIn> {
             ),
             textField(
                 text: "Your email / phone number",
-                controller: emailController),
+                controller: emailController
+                
+                ),
             textField(text: "Password", controller: passwordController),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,

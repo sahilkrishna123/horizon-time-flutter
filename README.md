@@ -14,3 +14,13 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+# Project Scope:
+E-commerce Website / Mobile Application
+User Registration and Authentication
+Product Catalog Management
+Shopping Cart and Checkout Process
+Secure Payment Gateway Integration with innovative features
+Order Management and Tracking
+User Reviews and Ratings
+Customer Support and Feedback Mechanisms
